@@ -5,7 +5,8 @@ RELEASE_DATA = {}
 with open("/etc/os-release") as f:
     reader = csv.reader(f, delimiter="=")
     for row in reader:
-        RELEASE_DATA[row[0]] = row[1]
+        if row:
+            RELEASE_DATA[row[0]] = row[1]
 
 if RELEASE_DATA["ID"] in ["debian", "raspbian"]:
     with open("/etc/debian_version") as f:
